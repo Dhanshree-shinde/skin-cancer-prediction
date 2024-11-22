@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Melanoma Report Input Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+      }
+
+      .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #007b5e;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #333;
+        box-sizing: border-box;
+      }
+
+      input[type="file"] {
+        padding: 5px;
+      }
+
+      textarea {
+        resize: none;
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      button[type="submit"] {
+        background-color: #007b5e;
+        color: white;
+      }
+
+      button[type="reset"] {
+        background-color: #ccc;
+        color: #333;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Melanoma Skin Cancer Report Input</h1>
+      <form
+        id="melanomaReportForm"
+        method="POST"
+        action="/submit"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group">
+          <label for="reportId">Report ID:</label>
+          <input
+            type="text"
+            id="reportId"
+            name="reportId"
+            placeholder="Enter Report ID"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="patientName">Patient Name:</label>
+          <input
+            type="text"
+            id="patientName"
+            name="patientName"
+            placeholder="Enter Patient Name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+        <div class="form-group">
+          <label for="sex">Sex:</label>
+          <select id="sex" name="sex" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            placeholder="Enter Age"
+            min="0"
+            max="120"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="anatomSite">Anatom Site General Challenge:</label>
+          <select id="anatomSite" name="anatom_site_general_challenge" required>
+            <option value="upper extremity">Upper Extremity</option>
+            <option value="lower extremity">Lower Extremity</option>
+            <option value="head/neck">Head/Neck</option>
+            <option value="torso">Torso</option>
+            <option value="unknown">Unknown</option>
+            <option value="palms/soles">Palms/Soles</option>
+            <option value="oral/genital">Oral/Genital</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="diagnosis">Diagnosis:</label>
+          <select id="diagnosis" name="diagnosis" required>
+            <option value="unknown">Unknown</option>
+            <option value="nevus">Nevus</option>
+            <option value="melanoma">Melanoma</option>
+            <option value="seborrheic keratosis">Seborrheic Keratosis</option>
+            <option value="lentigo NOS">Lentigo NOS</option>
+            <option value="lichenoid keratosis">Lichenoid Keratosis</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="inputImage">Upload Input Image:</label>
+          <input
+            type="file"
+            id="inputImage"
+            name="inputImage"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="feedback">Dermatologist Feedback:</label>
+          <textarea
+            id="feedback"
+            name="feedback"
+            placeholder="Enter Feedback"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit">Generate Report</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
