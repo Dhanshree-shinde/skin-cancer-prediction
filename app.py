@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
 import uuid
-from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
+from model_architecture import create_model  # Import model architecture
 
 app = Flask(__name__)
 
@@ -24,8 +24,9 @@ class MelanomaReport(db.Model):
     feedback = db.Column(db.String(255), nullable=True)
     image_path = db.Column(db.String(255), nullable=False)
 
-# Load Keras model
-model = load_model('model.h5')
+# Create model and load weights
+model = create_model()
+model.load_weights('model_weights')  # Load pre-trained weights
 
 # Create upload folder
 UPLOAD_FOLDER = 'static/uploads'
@@ -60,7 +61,7 @@ def submit():
     db.session.add(new_report)
     db.session.commit()
 
-    # Make predictions using Keras model
+    # Make predictions using the model
     img = load_img(filepath, target_size=(224, 224))  # Resize as per model input
     img_array = img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0) / 255.0  # Normalize image
